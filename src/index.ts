@@ -1,20 +1,4 @@
-import express, { type Express } from 'express'
-import { pino } from 'pino'
-import { a } from 'vitest/dist/chunks/suite.B2jumIFP'
-
-const logger = pino({ name: 'server start' })
-const app: Express = express()
-
-// Set the application to trust the reverse proxy
-app.set('trust proxy', true)
-
-app.get('/', (_req, res) => {
-  res.send('Hello World!')
-})
-
-app.get('/health', (_req, res) => {
-  res.send('OK')
-})
+import { app, logger } from '@/server'
 
 const server = app.listen(process.env.PORT, () => {
   const { NODE_ENV, HOST, PORT } = process.env
